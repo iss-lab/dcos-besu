@@ -8,6 +8,9 @@
       "executor-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.55.2/executor.zip",
       "scheduler-zip": "https://ecosystem-repo.s3.amazonaws.com/sdk/artifacts/0.55.2/operator-scheduler.zip",
       "svc": "http://minio.marathon.l4lb.thisdcos.directory:9000/artifacts/besu/svc.yml"
+    },
+    "docker": {
+      "besu": "isslab/besu:1.4.5"
     }
   },
   "images": {
