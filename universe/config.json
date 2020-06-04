@@ -71,7 +71,7 @@
       ]
     },
     "node": {
-      "description": "besu pod configuration properties",
+      "description": "Besu pod configuration properties, the first will be used as a bootnode",
       "type": "object",
       "properties": {
         "count": {
@@ -125,43 +125,19 @@
         "disk_type"
       ]
     },
-    "bootnode": {
-      "description": "besu bootnode pod configuration properties, some properties inherited from node.*",
-      "type": "object",
-      "properties": {
-        "count": {
-          "title": "Node count",
-          "description": "Number of besu bootnode pods to run, should be 0 or 1",
-          "type": "integer",
-          "default": 1
-        },
-        "placement_constraint": {
-          "title": "Placement constraint",
-          "description": "Placement constraints for nodes. Example: [[\"hostname\", \"UNIQUE\"]]",
-          "type": "string",
-          "default": "[[\"hostname\", \"UNIQUE\"]]",
-          "media": {
-            "type": "application/x-zone-constraints+json"
-          }
-        }
-      },
-      "required": [
-        "count"
-      ]
-    },
     "besu": {
       "description": "besu configuration properties",
       "type": "object",
       "properties": {
-        "PORT_P2P": { "title": "PORT_P2P", "description": "PORT_P2P", "type": "string", "default": "30303" },
-        "PORT_HTTP": { "title": "PORT_HTTP", "description": "PORT_HTTP", "type": "string", "default": "8545" },
-        "PORT_WS": { "title": "PORT_WS", "description": "PORT_WS", "type": "string", "default": "8546" },
-        "PORT_GRAPHQL": { "title": "PORT_GRAPHQL", "description": "PORT_GRAPHQL", "type": "string", "default": "8547" },
-        "PORT_METRICS": { "title": "PORT_METRICS", "description": "PORT_METRICS", "type": "string", "default": "9545" },
+        "BESU_PORT_P2P": { "title": "BESU_PORT_P2P", "description": "BESU_PORT_P2P", "type": "string", "default": "30303" },
+        "BESU_PORT_HTTP": { "title": "BESU_PORT_HTTP", "description": "BESU_PORT_HTTP", "type": "string", "default": "8545" },
+        "BESU_PORT_WS": { "title": "BESU_PORT_WS", "description": "BESU_PORT_WS", "type": "string", "default": "8546" },
+        "BESU_PORT_GRAPHQL": { "title": "BESU_PORT_GRAPHQL", "description": "BESU_PORT_GRAPHQL", "type": "string", "default": "8547" },
+        "BESU_PORT_METRICS": { "title": "BESU_PORT_METRICS", "description": "BESU_PORT_METRICS", "type": "string", "default": "9545" },
         "BESU_CONFIG_TOML_BASE64": { "title": "BESU_CONFIG_TOML_BASE64", "description": "BESU_CONFIG_TOML_BASE64", "type": "string" },
         "BESU_CONFIG_GENESIS_BASE64": { "title": "BESU_CONFIG_GENESIS_BASE64", "description": "BESU_CONFIG_GENESIS_BASE64", "type": "string" },
-        "BESU_PRIVATE_KEY_ARRAY_BASE64": { "title": "BESU_PRIVATE_KEY_BASE64", "description": "Base64 encoded JSON array of private keys, the array length should match the node.count", "type": "string" },
-        "BESU_PUBLIC_KEY_ARRAY_BASE64": { "title": "BESU_PUBLIC_KEY_BASE64", "description": "Base64 encoded JSON array of public keys, the array length should match the node.count", "type": "string" },
+        "BESU_PRIVATE_KEY_ARRAY_BASE64": { "title": "BESU_PRIVATE_KEY_BASE64", "description": "Base64 encoded JSON ordered array of private keys, the array length should match the node.count", "type": "string" },
+        "BESU_PUBLIC_KEY_ARRAY_BASE64": { "title": "BESU_PUBLIC_KEY_BASE64", "description": "Base64 encoded JSON ordered array of public keys, the array length should match the node.count", "type": "string" },
         "BESU_BOOTNODE_PUBLIC_KEY_BASE64": { "title": "BESU_BOOTNODE_PUBLIC_KEY_BASE64", "description": "BESU_BOOTNODE_PUBLIC_KEY_BASE64", "type": "string" },
         "BESU_BOOTNODE_P2P_ADDRESS": { "title": "BESU_BOOTNODE_P2P_ADDRESS", "description": "BESU_BOOTNODE_P2P_ADDRESS", "type": "string" },
         "BESU_CONFIG_DIRECTORY": { "title": "BESU_CONFIG_DIRECTORY", "description": "BESU_CONFIG_DIRECTORY", "type": "string", "default": "/mnt/mesos/sandbox/besu/config/" },

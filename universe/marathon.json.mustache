@@ -45,6 +45,26 @@
     "NODE_DISK": "{{node.disk}}",
     "NODE_DISK_TYPE": "{{node.disk_type}}",
 
+    "JQ_URI": "{{resource.assets.uris.jq-bin}}",
+    "BESU_CONFIG_TOML_URI": "{{resource.assets.uris.config-toml}}",
+    "BESU_GENESIS_URI": "{{resource.assets.uris.genesis}}",
+    "BESU_DOCKER_IMAGE": "{{resource.assets.docker.besu}}",
+
+    {{#besu.BESU_PORT_P2P}} "BESU_PORT_P2P": "{{besu.BESU_PORT_P2P}}", {{/besu.BESU_PORT_P2P}}
+    {{#besu.BESU_PORT_HTTP}} "BESU_PORT_HTTP": "{{besu.BESU_PORT_HTTP}}", {{/besu.BESU_PORT_HTTP}}
+    {{#besu.BESU_PORT_WS}} "BESU_PORT_WS": "{{besu.BESU_PORT_WS}}", {{/besu.BESU_PORT_WS}}
+    {{#besu.BESU_PORT_GRAPHQL}} "BESU_PORT_GRAPHQL": "{{besu.BESU_PORT_GRAPHQL}}", {{/besu.BESU_PORT_GRAPHQL}}
+    {{#besu.BESU_PORT_METRICS}} "BESU_PORT_METRICS": "{{besu.BESU_PORT_METRICS}}", {{/besu.BESU_PORT_METRICS}}
+    {{#besu.BESU_CONFIG_TOML_BASE64}} "TASKCFG_ALL_BESU_CONFIG_TOML_BASE64": "{{besu.BESU_CONFIG_TOML_BASE64}}", {{/besu.BESU_CONFIG_TOML_BASE64}}
+    {{#besu.BESU_CONFIG_GENESIS_BASE64}} "TASKCFG_ALL_BESU_CONFIG_GENESIS_BASE64": "{{besu.BESU_CONFIG_GENESIS_BASE64}}", {{/besu.BESU_CONFIG_GENESIS_BASE64}}
+    {{#besu.BESU_PRIVATE_KEY_ARRAY_BASE64}} "BESU_PRIVATE_KEY_ARRAY_BASE64": "{{besu.BESU_PRIVATE_KEY_ARRAY_BASE64}}", {{/besu.BESU_PRIVATE_KEY_ARRAY_BASE64}}
+    {{#besu.BESU_PUBLIC_KEY_ARRAY_BASE64}} "BESU_PUBLIC_KEY_ARRAY_BASE64": "{{besu.BESU_PUBLIC_KEY_ARRAY_BASE64}}", {{/besu.BESU_PUBLIC_KEY_ARRAY_BASE64}}
+    {{#besu.BESU_BOOTNODE_PUBLIC_KEY_BASE64}} "TASKCFG_ALL_BESU_BOOTNODE_PUBLIC_KEY_BASE64": "{{besu.BESU_BOOTNODE_PUBLIC_KEY_BASE64}}", {{/besu.BESU_BOOTNODE_PUBLIC_KEY_BASE64}}
+    {{#besu.BESU_BOOTNODE_P2P_ADDRESS}} "TASKCFG_ALL_BESU_BOOTNODE_P2P_ADDRESS": "{{besu.BESU_BOOTNODE_P2P_ADDRESS}}", {{/besu.BESU_BOOTNODE_P2P_ADDRESS}}
+    "TASKCFG_ALL_BESU_CONFIG_DIRECTORY": "{{besu.BESU_CONFIG_DIRECTORY}}",
+    "TASKCFG_ALL_BESU_KEYS_DIRECTORY": "{{besu.BESU_KEYS_DIRECTORY}}",
+    "TASKCFG_ALL_BESU_PUBLIC_KEY_DIRECTORY": "{{besu.BESU_PUBLIC_KEY_DIRECTORY}}",
+
     "JAVA_URI": "{{resource.assets.uris.jre-tar-gz}}",
     "EXECUTOR_URI": "{{resource.assets.uris.executor-zip}}",
     "BOOTSTRAP_URI": "{{resource.assets.uris.bootstrap-zip}}",

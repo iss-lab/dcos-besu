@@ -6,16 +6,70 @@ scheduler:
 pods:
   besu:
     count: {{NODE_COUNT}}
+    image: {{BESU_DOCKER_IMAGE}}
     placement: '{{{NODE_PLACEMENT}}}'
     {{#ENABLE_VIRTUAL_NETWORK}}
     networks:
       {{VIRTUAL_NETWORK_NAME}}:
         labels: {{VIRTUAL_NETWORK_PLUGIN_LABELS}}
     {{/ENABLE_VIRTUAL_NETWORK}}
+    uris:
+      - {{BOOTSTRAP_URI}}
+      - {{BESU_CONFIG_TOML_URI}}
+      - {{BESU_GENESIS_URI}}
+      - {{JQ_URI}}
+    resource-sets:
+      node-resources:
+        cpus: {{NODE_CPUS}}
+        memory: {{NODE_MEM}}
+        ports:
+          p2p:
+            port: {{BESU_PORT_P2P}}
+            advertise: true
+          http:
+            port: {{BESU_PORT_HTTP}}
+            advertise: true
+          ws:
+            port: {{BESU_PORT_WS}}
+            advertise: true
+          graphql:
+            port: {{BESU_PORT_GRAPHQL}}
+            advertise: true
+          metrics:
+            port: {{BESU_PORT_METRICS}}
+            advertise: true
+        volumes:
+          besu:
+            path: besu
+            type: {{NODE_DISK_TYPE}}
+            size: {{NODE_DISK}}
     tasks:
       node:
+        resource-set: node-resources
         goal: RUNNING
-        cmd: "echo besu >> besu-container-path/output && sleep $SLEEP_DURATION"
+        cmd: |
+          /mnt/mesos/sandbox/bootstrap
+
+          mkdir -p /mnt/mesos/sandbox/bin
+          export PATH=$PATH:/mnt/mesos/sandbox/bin
+          rm -f /mnt/mesos/sandbox/bin/jq
+          mv /mnt/mesos/sandbox/jq-linux64 /mnt/mesos/sandbox/bin/jq
+
+          rm -f {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/config.toml
+          mv /mnt/mesos/sandbox/config.toml {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/config.toml
+
+          rm -f {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/genesis.json
+          mv /mnt/mesos/sandbox/genesis.json {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/genesis.json
+          
+          {{#BESU_PRIVATE_KEY_ARRAY_BASE64}}
+          export BESU_PRIVATE_KEY_BASE64=$(echo "{{BESU_PRIVATE_KEY_ARRAY_BASE64}}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
+          {{/BESU_PRIVATE_KEY_ARRAY_BASE64}}
+          
+          {{#BESU_PUBLIC_KEY_ARRAY_BASE64}}
+          export BESU_PUBLIC_KEY_BASE64=$(echo "{{BESU_PUBLIC_KEY_ARRAY_BASE64}}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
+          {{/BESU_PUBLIC_KEY_ARRAY_BASE64}}
+
+          exec /docker_entrypoint.sh
         cpus: {{NODE_CPUS}}
         memory: {{NODE_MEM}}
         volume:
