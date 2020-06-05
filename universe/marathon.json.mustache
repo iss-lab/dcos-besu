@@ -49,6 +49,7 @@
     "BESU_CONFIG_TOML_URI": "{{resource.assets.uris.config-toml}}",
     "BESU_GENESIS_URI": "{{resource.assets.uris.genesis}}",
     "BESU_DOCKER_IMAGE": "{{resource.assets.container.docker.besu}}",
+    "PAUSE_OVERRIDE_CMD": "echo This task is PAUSED, sleeping ... && /mnt/mesos/sandbox/bootstrap --resolve=false && while true; do sleep 3600; done",
 
     {{#besu.BESU_PORT_P2P}} "BESU_PORT_P2P": "{{besu.BESU_PORT_P2P}}", {{/besu.BESU_PORT_P2P}}
     {{#besu.BESU_PORT_HTTP}} "BESU_PORT_HTTP": "{{besu.BESU_PORT_HTTP}}", {{/besu.BESU_PORT_HTTP}}

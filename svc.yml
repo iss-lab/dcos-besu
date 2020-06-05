@@ -48,6 +48,8 @@ pods:
         resource-set: node-resources
         goal: RUNNING
         cmd: |
+          cd /mnt/mesos/sandbox
+          
           /mnt/mesos/sandbox/bootstrap
 
           mkdir -p {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}
@@ -69,11 +71,11 @@ pods:
           mv /mnt/mesos/sandbox/genesis.json {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/genesis.json
           
           {{#TASKCFG_ALL_BESU_PRIVATE_KEY_ARRAY_BASE64}}
-          export BESU_PRIVATE_KEY_BASE64=$(echo "${BESU_PRIVATE_KEY_ARRAY_BASE64}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
+          export BESU_PRIVATE_KEY_BASE64=$(echo "${BESU_PRIVATE_KEY_ARRAY_BASE64}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64 -w 0)
           {{/TASKCFG_ALL_BESU_PRIVATE_KEY_ARRAY_BASE64}}
           
           {{#TASKCFG_ALL_BESU_PUBLIC_KEY_ARRAY_BASE64}}
-          export BESU_PUBLIC_KEY_BASE64=$(echo "${BESU_PUBLIC_KEY_ARRAY_BASE64}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
+          export BESU_PUBLIC_KEY_BASE64=$(echo "${BESU_PUBLIC_KEY_ARRAY_BASE64}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64 -w 0)
           {{/TASKCFG_ALL_BESU_PUBLIC_KEY_ARRAY_BASE64}}
 
           if [ $POD_INSTANCE_INDEX -gt 0 ]
