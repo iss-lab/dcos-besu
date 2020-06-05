@@ -11,8 +11,10 @@
       "genesis": "http://vsna-uat-dcb001.ad.issgovernance.com:9000/artifacts/besu/genesis.json",
       "jq-bin": "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
     },
-    "docker": {
-      "besu": "isslab/besu:1.4.5"
+    "container": {
+      "docker": {
+        "besu": "isslab/besu:1.4.5"
+      }
     }
   },
   "images": {

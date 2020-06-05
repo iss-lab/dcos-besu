@@ -50,10 +50,17 @@ pods:
         cmd: |
           /mnt/mesos/sandbox/bootstrap
 
+          mkdir -p {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}
+          mkdir -p {{TASKCFG_ALL_BESU_KEYS_DIRECTORY}}
+          mkdir -p {{TASKCFG_ALL_BESU_PUBLIC_KEY_DIRECTORY}}
+          # TODO: Parameterize the data dir, and make config.toml a config template by default
+          mkdir -p /mnt/mesos/sandbox/besu/data
+
           mkdir -p /mnt/mesos/sandbox/bin
           export PATH=$PATH:/mnt/mesos/sandbox/bin
           rm -f /mnt/mesos/sandbox/bin/jq
           mv /mnt/mesos/sandbox/jq-linux64 /mnt/mesos/sandbox/bin/jq
+          chmod 755 /mnt/mesos/sandbox/bin/jq
 
           rm -f {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/config.toml
           mv /mnt/mesos/sandbox/config.toml {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/config.toml
@@ -61,19 +68,24 @@ pods:
           rm -f {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/genesis.json
           mv /mnt/mesos/sandbox/genesis.json {{TASKCFG_ALL_BESU_CONFIG_DIRECTORY}}/genesis.json
           
-          {{#BESU_PRIVATE_KEY_ARRAY_BASE64}}
-          export BESU_PRIVATE_KEY_BASE64=$(echo "{{BESU_PRIVATE_KEY_ARRAY_BASE64}}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
-          {{/BESU_PRIVATE_KEY_ARRAY_BASE64}}
+          {{#TASKCFG_ALL_BESU_PRIVATE_KEY_ARRAY_BASE64}}
+          export BESU_PRIVATE_KEY_BASE64=$(echo "${BESU_PRIVATE_KEY_ARRAY_BASE64}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
+          {{/TASKCFG_ALL_BESU_PRIVATE_KEY_ARRAY_BASE64}}
           
-          {{#BESU_PUBLIC_KEY_ARRAY_BASE64}}
-          export BESU_PUBLIC_KEY_BASE64=$(echo "{{BESU_PUBLIC_KEY_ARRAY_BASE64}}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
-          {{/BESU_PUBLIC_KEY_ARRAY_BASE64}}
+          {{#TASKCFG_ALL_BESU_PUBLIC_KEY_ARRAY_BASE64}}
+          export BESU_PUBLIC_KEY_BASE64=$(echo "${BESU_PUBLIC_KEY_ARRAY_BASE64}" | base64 -d | jq -r ".[${POD_INSTANCE_INDEX}]" | base64)
+          {{/TASKCFG_ALL_BESU_PUBLIC_KEY_ARRAY_BASE64}}
+
+          if [ $POD_INSTANCE_INDEX -gt 0 ]
+          then
+            export BESU_BOOTNODE_P2P_ADDRESS=besu-0-node.${FRAMEWORK_HOST}:{{BESU_PORT_P2P}}
+          fi
 
           exec /docker_entrypoint.sh
         cpus: {{NODE_CPUS}}
         memory: {{NODE_MEM}}
         volume:
-          path: "besu-container-path"
+          path: "besu"
           type: {{NODE_DISK_TYPE}}
           size: {{NODE_DISK}}
         env:

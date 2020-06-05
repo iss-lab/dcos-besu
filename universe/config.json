@@ -78,7 +78,7 @@
           "title": "Node count",
           "description": "Number of besu pods to run",
           "type": "integer",
-          "default": 1
+          "default": 5
         },
         "placement_constraint": {
           "title": "Placement constraint",
@@ -136,16 +136,16 @@
         "BESU_PORT_METRICS": { "title": "BESU_PORT_METRICS", "description": "BESU_PORT_METRICS", "type": "string", "default": "9545" },
         "BESU_CONFIG_TOML_BASE64": { "title": "BESU_CONFIG_TOML_BASE64", "description": "BESU_CONFIG_TOML_BASE64", "type": "string" },
         "BESU_CONFIG_GENESIS_BASE64": { "title": "BESU_CONFIG_GENESIS_BASE64", "description": "BESU_CONFIG_GENESIS_BASE64", "type": "string" },
-        "BESU_PRIVATE_KEY_ARRAY_BASE64": { "title": "BESU_PRIVATE_KEY_BASE64", "description": "Base64 encoded JSON ordered array of private keys, the array length should match the node.count", "type": "string" },
-        "BESU_PUBLIC_KEY_ARRAY_BASE64": { "title": "BESU_PUBLIC_KEY_BASE64", "description": "Base64 encoded JSON ordered array of public keys, the array length should match the node.count", "type": "string" },
-        "BESU_BOOTNODE_PUBLIC_KEY_BASE64": { "title": "BESU_BOOTNODE_PUBLIC_KEY_BASE64", "description": "BESU_BOOTNODE_PUBLIC_KEY_BASE64", "type": "string" },
+        "BESU_PRIVATE_KEY_ARRAY_BASE64": { "title": "BESU_PRIVATE_KEY_BASE64", "description": "Base64 encoded JSON ordered array of private keys, the array length should match the node.count", "type": "string", "default": "WyIwZmQ0YWVjZDhmMDJiMjRmNDY4MzI1YWEwNmUxNDI4YWI4MDc2ZDI4M2JhYzNlZDgwNGM5ZjcwMTg3ZGVkYjYzIiwiNDdjNjNjMGFmZDFhODViMTY5MTU5MzRhMmQ3NWNmNWEwZDNiZDEzYzUwOWQ2ZWU5ZDdlZjEzMTVhMzZiZGMwYSIsIjM1ZGNjODUzMzU0YjI0ZTk4ODg5ZmE0YjJlMjE0ZDVlOTJlNzU5ZWY4MzEyYmI2YTQ0NGJhZDMxODIxODdiNjgiLCJkMzhlNzE1NTI5NDNlMTgwNjFmZGI0NGE3MmVjYTE0ZWExOTNlMDUwNWE3ZWFkNDA0ODY0Zjk4NDBlMjc1YjQ5IiwiN2ZkNzRkNzQyMDliN2RkMDZhNTU2YjU3NDVmOWY0YWE4NWIwYWM1NGVlNzJiZDA5Njk5MjkwOTYyMTBhNjY2YSJdCg==" },
+        "BESU_PUBLIC_KEY_ARRAY_BASE64": { "title": "BESU_PUBLIC_KEY_BASE64", "description": "Base64 encoded JSON ordered array of public keys, the array length should match the node.count", "type": "string", "default": "WyJjMTk3OWE4YTQ4NjkzZGI4MDQzMTZiNWFjZWJlMzVlMTE3MzFlMWZiMWM5YzIxZmY3MjY4YWIyNWRiNmY2ZTAzMzkwYTQyOWI4M2NmMGVjMDg2NWE3MjA1ZjI2NjllYzFhY2U2NTJhM2RlZjExZTJlMDE1NzFjNzQ5MzljYmUyMiIsImU0MDEyOWYwMmM5ZTI5YTAyMDQ5NjY4MzQ2ZDQ3NzdiYjU1ODA5MDQyNzQ2ODgyYjMzYjIwYThiNWE3MzEwZWI1ZjEwN2E1M2YwYWEzZGE3NjZlZTc3ZjQwMTU1N2E3OWMwYzMyODMyOWVhNDhiZjA5OTZjNmM5ZGZmODE3Zjc2IiwiYTNlNGFmMDgxYTBhYjg1M2M5NTliOWFjZDA1OTZmODE4YjkxYTk0MDliOWQwNGM1MGFmMDU1MDcyYzkyOWFiZmEzNDBlMTQxMTFkY2ZhNzZlMDQ5ZmRiMTZiYjkxOThlNzIyZDVlN2JlM2U4ZWYzNzU2MmVhMGQwY2UxZWRhMTEiLCI4ZjRlNDQ0YTczMDM0MjM2YWI0MjQ0YzdhNTcyYWEyYzYxOThiOWUwZDQ4M2VmMTdiZjRiNzUxY2FjNWMwMzcwYmM1MjdhNWIwYzVkMDFhYTNlZjQxNzA0YWY4MzhjNzQ3MzBhZWVjYWMwZjBjMjJkYzRjMTdiMGE5ZjAzYWQ3NiIsIjUxNzI5ZjFiNDE4NmRiMTcwMWUxM2Q5ZTcxYjdiNGYwYTM1ZTBjYzFmNDgwYzkwNGM1ZTc1OGI1Yjc2OTM2Njg1ZGNjZGU0OTBjNjIzYTc5ZjZjNmM1ZDFkZmQzZWFlMzdkMzUxMDFlMWE5YTJkMDY1MzYwNzQ1NjJkZDc3NjA0Il0K" },
+        "BESU_BOOTNODE_PUBLIC_KEY_BASE64": { "title": "BESU_BOOTNODE_PUBLIC_KEY_BASE64", "description": "BESU_BOOTNODE_PUBLIC_KEY_BASE64", "type": "string", "default": "MHhjMTk3OWE4YTQ4NjkzZGI4MDQzMTZiNWFjZWJlMzVlMTE3MzFlMWZiMWM5YzIxZmY3MjY4YWIyNWRiNmY2ZTAzMzkwYTQyOWI4M2NmMGVjMDg2NWE3MjA1ZjI2NjllYzFhY2U2NTJhM2RlZjExZTJlMDE1NzFjNzQ5MzljYmUyMgo=" },
         "BESU_BOOTNODE_P2P_ADDRESS": { "title": "BESU_BOOTNODE_P2P_ADDRESS", "description": "BESU_BOOTNODE_P2P_ADDRESS", "type": "string" },
-        "BESU_CONFIG_DIRECTORY": { "title": "BESU_CONFIG_DIRECTORY", "description": "BESU_CONFIG_DIRECTORY", "type": "string", "default": "/mnt/mesos/sandbox/besu/config/" },
-        "BESU_KEYS_DIRECTORY": { "title": "BESU_KEYS_DIRECTORY", "description": "BESU_KEYS_DIRECTORY", "type": "string", "default": "/mnt/mesos/sandbox/besu/keys/" },
-        "BESU_PUBLIC_KEY_DIRECTORY": { "title": "BESU_PUBLIC_KEY_DIRECTORY", "description": "BESU_PUBLIC_KEY_DIRECTORY", "type": "string", "default": "/mnt/mesos/sandbox/besu/public-keys/" }
+        "BESU_CONFIG_DIRECTORY": { "title": "BESU_CONFIG_DIRECTORY", "description": "BESU_CONFIG_DIRECTORY", "type": "string", "default": "/mnt/mesos/sandbox/besu/config" },
+        "BESU_KEYS_DIRECTORY": { "title": "BESU_KEYS_DIRECTORY", "description": "BESU_KEYS_DIRECTORY", "type": "string", "default": "/mnt/mesos/sandbox/besu/keys" },
+        "BESU_PUBLIC_KEY_DIRECTORY": { "title": "BESU_PUBLIC_KEY_DIRECTORY", "description": "BESU_PUBLIC_KEY_DIRECTORY", "type": "string", "default": "/mnt/mesos/sandbox/besu/public-keys" }
       },
       "required": [
-        "PORT_P2P"
+        "BESU_PORT_P2P"
       ]
     }
   }
