@@ -80,8 +80,11 @@ pods:
 
           if [ $POD_INSTANCE_INDEX -gt 0 ]
           then
+            # TODO: Get nslookup or similar into image so that this can be an ip address
             export BESU_BOOTNODE_P2P_ADDRESS=besu-0-node.${FRAMEWORK_HOST}:{{BESU_PORT_P2P}}
           fi
+
+          export HOST=${MESOS_CONTAINER_IP}
 
           exec /docker_entrypoint.sh
         cpus: {{NODE_CPUS}}
