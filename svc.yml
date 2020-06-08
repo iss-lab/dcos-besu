@@ -82,18 +82,10 @@ pods:
           then
             BESU_BOOTNODE_IP=$(/usr/bin/getent hosts besu-0-node.${FRAMEWORK_HOST} | awk '{ print $1 }')
             echo "Bootnode IP Address: ${BESU_BOOTNODE_IP}"
-            export BESU_BOOTNODE_P2P_ADDRESS=besu-0-node.${FRAMEWORK_HOST}:${PORT_P2P}
+            export BESU_BOOTNODE_P2P_ADDRESS="${BESU_BOOTNODE_IP}:{{BESU_PORT_P2P}}"
             echo "Bootnode P2P Address: ${BESU_BOOTNODE_P2P_ADDRESS}"
           fi
 
           export HOST=${MESOS_CONTAINER_IP}
 
           exec /docker_entrypoint.sh
-        cpus: {{NODE_CPUS}}
-        memory: {{NODE_MEM}}
-        volume:
-          path: "besu"
-          type: {{NODE_DISK_TYPE}}
-          size: {{NODE_DISK}}
-        env:
-          SLEEP_DURATION: {{SLEEP_DURATION}}
