@@ -80,8 +80,10 @@ pods:
 
           if [ $POD_INSTANCE_INDEX -gt 0 ]
           then
-            # TODO: Get nslookup or similar into image so that this can be an ip address
-            export BESU_BOOTNODE_P2P_ADDRESS=besu-0-node.${FRAMEWORK_HOST}:{{BESU_PORT_P2P}}
+            BESU_BOOTNODE_IP=$(/usr/bin/getent hosts besu-0-node.${FRAMEWORK_HOST} | awk '{ print $1 }')
+            echo "Bootnode IP Address: ${BESU_BOOTNODE_IP}"
+            export BESU_BOOTNODE_P2P_ADDRESS=besu-0-node.${FRAMEWORK_HOST}:${PORT_P2P}
+            echo "Bootnode P2P Address: ${BESU_BOOTNODE_P2P_ADDRESS}"
           fi
 
           export HOST=${MESOS_CONTAINER_IP}
