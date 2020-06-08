@@ -6,9 +6,9 @@
       "bootstrap-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.55.2/bootstrap.zip",
       "executor-zip": "https://downloads.mesosphere.com/dcos-commons/artifacts/0.55.2/executor.zip",
       "scheduler-zip": "https://ecosystem-repo.s3.amazonaws.com/sdk/artifacts/0.55.2/operator-scheduler.zip",
-      "svc": "http://vsna-uat-dcb001.ad.issgovernance.com:9000/artifacts/besu/svc.yml",
-      "config-toml": "http://vsna-uat-dcb001.ad.issgovernance.com:9000/artifacts/besu/config.toml",
-      "genesis": "http://vsna-uat-dcb001.ad.issgovernance.com:9000/artifacts/besu/genesis.json",
+      "svc": "https://github.com/iss-lab/dcos-riak/releases/download/v1.4.5/svc.yml",
+      "config-toml": "https://github.com/iss-lab/dcos-riak/releases/download/v1.4.5/config.toml",
+      "genesis": "https://github.com/iss-lab/dcos-riak/releases/download/v1.4.5/genesis.json",
       "jq-bin": "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64"
     },
     "container": {
