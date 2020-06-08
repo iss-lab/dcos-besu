@@ -5,7 +5,7 @@
   "downgradesTo": ["{{downgrades-to}}"],
   "minDcosReleaseVersion": "1.13",
   "name": "besu",
-  "version": "{{package-version}}",
+  "version": "1.4.5",
   "maintainer": "andrew.kerrigan@issgovernance.com",
   "description": "Hyperledger Besu on DC/OS",
   "selected": false,
