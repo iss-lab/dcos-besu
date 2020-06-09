@@ -3,7 +3,11 @@
 ## DC/OS Setup
 
 ```
-dcos package repo add besu-repo --index=0 https://github.com/iss-lab/dcos-besu/releases/download/v1.4.5/besu-repo.json
+wget https://github.com/iss-lab/dcos-besu/releases/download/v1.4.5/besu-repo.json
+mc mb minio-dcos/artifacts
+mc policy download minio-dcos/artifacts
+mc cp --attr "Content-Type=application/vnd.dcos.universe.repo+json" besu-repo.json minio-dcos/artifacts/besu/
+dcos package repo add besu-repo --index=0 http://MINIO_HOST:9000/artifacts/besu/besu-repo.json
 ```
 
 ## Installing
@@ -79,7 +83,7 @@ response=$(curl -sH "$AUTH" $GH_TAGS)
 id=$(echo $response | jq .id)
 GH_ASSET="https://uploads.github.com/repos/iss-lab/dcos-besu/releases/$id/assets"
 
-curl --data-binary @"./dist/besu-repo.json" -H "Authorization: token $github_api_token" -H "Content-Type: application/vnd.dcos.universe.repo+json;charset=utf-8;version=v4" "$GH_ASSET?name=besu-repo.json"
+curl -XPOST --data-binary @"./dist/besu-repo.json" -H "Authorization: token $github_api_token" -H "Content-Type: application/vnd.dcos.universe.repo+json" "$GH_ASSET?name=besu-repo.json"
 
 curl --data-binary @"svc.yml" -H "Authorization: token $github_api_token" -H "Content-Type: text/yaml" "$GH_ASSET?name=svc.yml"
 curl --data-binary @"./files/config.toml" -H "Authorization: token $github_api_token" -H "Content-Type: text/toml" "$GH_ASSET?name=config.toml"
