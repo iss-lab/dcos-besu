@@ -13,7 +13,7 @@
     },
     "container": {
       "docker": {
-        "besu": "isslab/besu:1.4.5"
+        "besu": "isslab/dcos-exflo-besu:1.4.5"
       }
     }
   },

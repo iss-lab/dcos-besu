@@ -1,16 +1,16 @@
 
 {
   "packagingVersion": "4.0",
-  "upgradesFrom": ["{{upgrades-from}}"],
-  "downgradesTo": ["{{downgrades-to}}"],
+  "upgradesFrom": ["%(upgrades-from)s"],
+  "downgradesTo": ["%(downgrades-to)s"],
   "minDcosReleaseVersion": "1.13",
   "name": "besu",
-  "version": "1.4.5",
-  "maintainer": "andrew.kerrigan@issgovernance.com",
+  "version": "%(package-version)s",
+  "maintainer": "%(maintainer)s",
   "description": "Hyperledger Besu on DC/OS",
   "selected": false,
   "framework": true,
   "tags": ["0.55.2", "besu", "ethereum", "blockchain", "dlt"],
-  "postInstallNotes": "DC/OS Hyperledger Besu is being installed!\n\n\tDocumentation: https://github.com/iss-lab/dcos-besu\n\tIssues: https://github.com/iss-lab/dcos-besu/issues",
-  "postUninstallNotes": "DC/OS Hyperledger Besu is being uninstalled."
+  "postInstallNotes": "DC/OS besu is being installed!\n\n\tDocumentation: %(documentation-path)s\n\tIssues: %(issues-path)s",
+  "postUninstallNotes": "DC/OS besu is being uninstalled."
 }
